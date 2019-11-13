@@ -16,32 +16,37 @@ public class PersonVersioningController {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
 
-	@GetMapping(value = "/person/param", params = "version=1")
+	@GetMapping(value = "/person/param", params = "version=1") // this csn be accessed using /person/param?version=1
 	public PersonV1 paramV1() {
 		return new PersonV1("Bob Charlie");
 	}
 
-	@GetMapping(value = "/person/param", params = "version=2")
+	@GetMapping(value = "/person/param", params = "version=2") // this csn be accessed using /person/param?version=2
 	public PersonV2 paramV2() {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
 
-	@GetMapping(value = "/person/header", headers = "X-API-VERSION=1")
+	@GetMapping(value = "/person/header", headers = "X-API-VERSION=1") //using headers 
+	//this csn be accessed using /person/header and in header section key= X-API-VERSION  value=1
 	public PersonV1 headerV1() {
 		return new PersonV1("Bob Charlie");
 	}
 
 	@GetMapping(value = "/person/header", headers = "X-API-VERSION=2")
+	//this csn be accessed using /person/header and in header section key= X-API-VERSION  value=2
 	public PersonV2 headerV2() {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
 
 	@GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v1+json")
+	
+	//this csn be accessed using /person/produces and in header section key= Accept  value=application/vnd.company.app-v1+json
 	public PersonV1 producesV1() {
 		return new PersonV1("Bob Charlie");
 	}
 
 	@GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v2+json")
+	//this csn be accessed using /person/produces and in header section key= Accept  value=application/vnd.company.app-v2+json
 	public PersonV2 producesV2() {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
