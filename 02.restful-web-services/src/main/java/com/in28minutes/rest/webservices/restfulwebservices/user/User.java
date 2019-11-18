@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description="All details about the user.")
+@ApiModel(description = "All details about the user.")
 @Entity
 public class User {
 
@@ -21,15 +21,23 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 
-	@Size(min=2, message="Name should have atleast 2 characters")
-	@ApiModelProperty(notes="Name should have atleast 2 characters")
+	@Size(min = 2, message = "Name should have atleast 2 characters")
+	@ApiModelProperty(notes = "Name should have atleast 2 characters")
 	private String name;
 
 	@Past
-	@ApiModelProperty(notes="Birth date should be in the past")
+	@ApiModelProperty(notes = "Birth date should be in the past")
 	private Date birthDate;
+
 	
-	@OneToMany(mappedBy="user")
+	/*
+	 * eventhough its OneToMany and ManyToOne mapping from user to post but this
+	 * will work and not into loop because we have set fetchType for users in post
+	 * to lazy so it will invoke user details in post only when we call the geeter
+	 * method related to post . this mappedBy sepecifies that posts details wont be
+	 * seen in user table only it will be displayed in posts
+	 */
+	@OneToMany(mappedBy = "user") 
 	private List<Post> posts;
 
 	protected User() {
