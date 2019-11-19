@@ -30,6 +30,9 @@ public class CurrencyConversionController {
 		uriVariables.put("from", from);
 		uriVariables.put("to", to);
 
+		
+		//invoking currency exchange service from currency conversion service 
+		//need to stRT THE CURRENCY-EXCHANGE SERVICE also
 		ResponseEntity<CurrencyConversionBean> responseEntity = new RestTemplate().getForEntity(
 				"http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class,
 				uriVariables);

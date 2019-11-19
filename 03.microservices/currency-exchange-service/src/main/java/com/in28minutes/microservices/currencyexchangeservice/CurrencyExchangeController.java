@@ -14,7 +14,7 @@ public class CurrencyExchangeController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private Environment environment;
+	private Environment environment;  //for making the use ports from spring environment
 	
 	@Autowired
 	private ExchangeValueRepository repository;
