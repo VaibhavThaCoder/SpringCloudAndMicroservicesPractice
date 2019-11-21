@@ -1,4 +1,4 @@
-package com.in28minutes.rest.webservices.restfulwebservices.filtering;
+ package com.in28minutes.rest.webservices.restfulwebservices.filtering;
 
 import java.util.Arrays;
 import java.util.List;

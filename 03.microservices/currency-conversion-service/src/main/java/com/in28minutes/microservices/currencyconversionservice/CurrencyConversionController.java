@@ -46,8 +46,12 @@ public class CurrencyConversionController {
 	@GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversionBean convertCurrencyFeign(@PathVariable String from, @PathVariable String to,
 			@PathVariable BigDecimal quantity) {
+		
+		
 
 		CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
+		//here we are only talking to proxy and to actaul micro-service feign client will take care of that.
+		//this helps in invoking multiple web services apis easily
 
 		logger.info("{}", response);
 		
