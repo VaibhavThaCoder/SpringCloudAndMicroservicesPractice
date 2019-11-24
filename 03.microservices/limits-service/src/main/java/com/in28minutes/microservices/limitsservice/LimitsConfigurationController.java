@@ -15,11 +15,10 @@ public class LimitsConfigurationController {
 
 	@GetMapping("/limits")
 	public LimitConfiguration retrieveLimitsFromConfigurations() {
-		
-		//extracting the limits values from Configuration class
-		LimitConfiguration limitConfiguration = new LimitConfiguration(configuration.getMaximum(), 
-				configuration.getMinimum());  
-		
+
+		// extracting the limits values from Configuration class
+		LimitConfiguration limitConfiguration = new LimitConfiguration(configuration.getMaximum(),
+				configuration.getMinimum());
 
 		// hardcoding the max and min values
 //		LimitConfiguration limitConfiguration = new LimitConfiguration(1000, 1);
@@ -28,11 +27,17 @@ public class LimitsConfigurationController {
 
 	@GetMapping("/fault-tolerance-example")
 	@HystrixCommand(fallbackMethod = "fallbackRetrieveConfiguration")
-	public LimitConfiguration retrieveConfiguration() {
+	// here we have given default limit configuration for the limits service so that
+	// if limits service is not available other services dependent on this limits
+	// service will take this configuration and will continue the work
+	
+	public LimitConfiguration retrieveConfiguration() { // if the fallback method is also not present the runtime
+														// exception is thrown saying not available with status code 500
 		throw new RuntimeException("Not available");
 	}
 
-	public LimitConfiguration fallbackRetrieveConfiguration() {
+	public LimitConfiguration fallbackRetrieveConfiguration() { // this method name is specified in fallbackMethod
+																// parameter above in hystrix command
 		return new LimitConfiguration(999, 9);
 	}
 
