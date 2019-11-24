@@ -15,7 +15,7 @@ public class CurrencyExchangeServiceApplication {
 		SpringApplication.run(CurrencyExchangeServiceApplication.class, args);
 	}
 	
-	@Bean
+	@Bean   //for tracing all the apis request for the application using sleuth
 	public Sampler defaultSampler(){
 		return Sampler.ALWAYS_SAMPLE;
 	}
